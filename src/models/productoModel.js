@@ -1,12 +1,18 @@
+require("dotenv").config();
+
+
 const mongoose = require("mongoose");
 
-const ProductoSchema = new mongoose.Schema(
-  {
+mongoose.connect(process.env.MONGO_URL, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+});
+
+
+const ProductoSchema = new mongoose.Schema({
     nombre: String,
     precio: String,
-  },
-  { collection: "productos" }
-);
+}, { collection: "productos" });
 
 const Producto = mongoose.model("Producto", ProductoSchema);
 
